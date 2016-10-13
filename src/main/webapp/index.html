@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Books</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/script.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+
+<body>
+    <div>
+        <table id="books" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Author</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div>
+        <form method="POST" action="webapi/books" id="addbookform">
+            <div class="form-group">
+                <label for="bookAuthor">Author</label>
+                <input type="text" class="form-control" required id="bookAuthor" placeholder="Author" name="author">
+            </div>
+            <div class="form-group">
+                <label for="bookName">Name</label>
+                <input type="text" class="form-control" required id="bookName" placeholder="Name" name="name">
+            </div>
+            <button type="submit" class="btn btn-default">Add book</button>
+        </form>
+    </div>
+</body>
+
+</html>
