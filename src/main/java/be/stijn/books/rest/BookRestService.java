@@ -1,10 +1,11 @@
-package be.stijn.books.service;
+package be.stijn.books.rest;
 
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -13,16 +14,17 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import be.stijn.books.model.Book;
+import be.stijn.books.service.TestEJB;
 
 @Path("books")
-public class BookService {
+@Stateful
+public class BookRestService {
 	
+	@PersistenceContext(unitName = "books")
 	private EntityManager em;
 	
-	public BookService() {
-		EntityManagerFactory emManagerFactory = Persistence.createEntityManagerFactory("books");
-		em = emManagerFactory.createEntityManager();
-	}
+	@EJB
+	private TestEJB testEJB;
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -36,6 +38,12 @@ public class BookService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void addBook(Book book) {
 		em.persist(book);
-		em.flush();
+	}
+	
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("test")
+	public String test() {
+		return testEJB.getTest();
 	}
 }
