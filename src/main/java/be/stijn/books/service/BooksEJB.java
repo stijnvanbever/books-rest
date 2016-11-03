@@ -23,4 +23,9 @@ public class BooksEJB {
 	public void addBook(Book book) {
 		em.persist(book);
 	}
+
+	public void removeBook(Long id) {
+		Book book = em.find(Book.class, id);
+		em.remove(book);
+	}
 }
