@@ -17,7 +17,6 @@ import be.stijn.books.model.Book;
 import be.stijn.books.service.BooksEJB;
 
 @Path("books")
-@Stateful
 public class BookRestService {
 	
 	@EJB
