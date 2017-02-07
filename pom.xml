@@ -8,9 +8,18 @@
 	<packaging>war</packaging>
 
 	<name>books-rest</name>
+	
+	<properties>
+		<jersey.version>2.23.2</jersey.version>
+		<postgresql.version>9.3-1102-jdbc41</postgresql.version>
+		<hibernate.version>5.0.10.Final</hibernate.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<version.jboss.bom>10.1.0.Final</version.jboss.bom>
+		<version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
+	</properties>
 
 	<build>
-		<finalName>books-rest</finalName>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -30,21 +39,15 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
+			<!-- The WildFly plugin deploys your war to a local WildFly container -->
+			<!-- To use, run: mvn package wildfly:deploy -->
 			<plugin>
 				<groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>1.2.0.Alpha1</version>
+				<artifactId>wildfly-maven-plugin</artifactId>
+				<version>${version.wildfly.maven.plugin}</version>
 			</plugin>
 		</plugins>
 	</build>
-
-	<properties>
-		<jersey.version>2.23.2</jersey.version>
-		<postgresql.version>9.3-1102-jdbc41</postgresql.version>
-		<hibernate.version>5.0.10.Final</hibernate.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<version.jboss.bom>10.1.0.Final</version.jboss.bom>
-	</properties>
 
 	<dependencyManagement>
 		<dependencies>
@@ -66,7 +69,7 @@
 		</dependency>
 
 		<!-- Import the CDI API, we use provided scope as the API is included in 
-			WildFly 8 -->
+			WildFly 10 -->
 		<dependency>
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
