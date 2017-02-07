@@ -3,7 +3,6 @@ package be.stijn.books.rest;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.ejb.Stateful;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -17,7 +16,6 @@ import be.stijn.books.model.Book;
 import be.stijn.books.service.BooksEJB;
 
 @Path("books")
-@Stateful
 public class BookRestService {
 	
 	@EJB
