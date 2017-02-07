@@ -32,17 +32,33 @@ function addBooksToTable(books) {
     var out = "";
     var i;
     for (i = 0; i < books.length; i++) {
-        out += '<tr>' + addTD(books[i].id) + addTD(books[i].author) + addTD(books[i].name) + addRemove(books[i].id) + '</tr>';
+        out += '<tr>' + addTD(books[i].id, 'bookid') + addTD(books[i].author, 'bookauthor') + addTD(books[i].name, 'bookname') + addRemove(books[i].id) + '</tr>';
     }
     document.getElementById("booksBody").innerHTML += out;
 }
 
-function addTD(content) {
-    return '<td>' + content + '</td>';
+function addTD(content, tdClass) {
+    return '<td class="' + tdClass + '">' + content + '</td>';
 }
 
 function addRemove(id) {
     return addTD('<img src="img/remove.png" style="height: 15px; cursor: pointer;" onclick="removeBook(' + id + ')"/>');
+}
+
+function filterContent(filter, tdClass) {
+	var table, tr, td, i;
+	
+	table = document.getElementById('booksBody');
+	tr = table.getElementsByTagName('tr');
+	
+	for (i = 0; i < tr.length; i++) {
+		td = tr[i].getElementsByClassName(tdClass)[0];
+		if (td.innerHTML.toUpperCase().indexOf(filter.value.toUpperCase()) > -1) {
+			tr[i].style.display = "";
+		} else {
+			tr[i].style.display = "none";
+		}
+	}
 }
 
 loadBooks();

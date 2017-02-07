@@ -16,6 +16,11 @@
 </head>
 
 <body>
+	<div>
+		<input text="text" id="filterAuthor" onkeyup="filterContent(this, 'bookauthor')" placeholder="Filter Author" />
+		<input text="text" id="filterName" onkeyup="filterContent(this, 'bookname')" placeholder="Filter Name" />
+	</div>
+
     <div>
         <table id="books" class="table table-hover">
             <thead>
